@@ -18,7 +18,14 @@ export default function ProjectsSection() {
     fetch('https://api.github.com/users/1Anuraag0/repos?sort=updated&per_page=12')
       .then(res => res.json())
       .then(data => {
-        if (!Array.isArray(data)) return;
+        if (!Array.isArray(data)) {
+          setProjects([
+            { title: 'Portfolio', description: 'Interactive React/Next.js portfolio.', tags: ['TypeScript', 'React'], icon: '⚡', color: '#7ec8e3', link: 'https://github.com/1Anuraag0/Portfolio' },
+            { title: 'More Artifacts', description: 'Explore more on GitHub directly.', tags: ['Code', 'Open Source'], icon: '📦', color: '#e8764e', link: 'https://github.com/1Anuraag0' }
+          ]);
+          setLoading(false);
+          return;
+        }
         const formatted = data
           .filter((repo: any) => !repo.fork)
           .slice(0, 6)

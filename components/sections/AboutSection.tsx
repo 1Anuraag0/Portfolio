@@ -76,6 +76,7 @@ export default function AboutSection() {
     fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`)
       .then(res => res.json())
       .then(async (repos: GitHubRepo[]) => {
+        if (!Array.isArray(repos)) return;
         const ownRepos = repos.filter(r => !r.fork);
         setQuests(ownRepos.slice(0, 5));
 
