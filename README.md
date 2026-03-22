@@ -1,24 +1,56 @@
-# 💫 About Me:
-👋 Hi, I'm Anurag Dolui!<br>I'm an undergraduate student passionate about frontend development. Currently, I'm exploring Next.js and modern web technologies to build efficient and user-friendly applications.<br><br>🔹 Learning Next.js, React, and modern UI/UX principles<br>🔹 Interested in web performance optimization and interactive UI design<br>🔹 Building projects to sharpen my skills<br><br>Feel free to connect with me and check out my projects! 🚀<br><br>
+# 🌟 RPG-Style Dynamic Portfolio
 
+Welcome to my portfolio! This isn't just a static website—it's an interactive, narrative-driven experience built directly with **Next.js 16**, **React 19**, and **TailwindCSS v4**, featuring advanced animations and live integrations. 
 
-## 🌐 Socials:
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?logo=linkedin&logoColor=white)](https://linkedin.com/in/AnuragDolui) [![email](https://img.shields.io/badge/Email-D14836?logo=gmail&logoColor=white)](mailto:anuragdolui86@gmail.com) 
+Check out the live code and watch the environments change, the stats load dynamically, and the carrier pigeon fly!
 
-# 💻 Tech Stack:
-![C](https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white) ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white) ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white) ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Three js](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white) ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Framer](https://img.shields.io/badge/Framer-black?style=for-the-badge&logo=framer&logoColor=blue)
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=1Anuraag0&theme=radical&hide_border=false&include_all_commits=true&count_private=true)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=1Anuraag0&theme=radical&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=1Anuraag0&theme=radical&hide_border=false&include_all_commits=true&count_private=true&layout=compact)
+## ✨ Key Features
+- **🌍 Dynamic Time of Day Environments:** The Hero Section dynamically switches its video background between day (`Herobg.mp4`) and night (`Nighthero.mp4`) based on the user's real-time local clock.
+- **📊 Live API Integrations:** The **"Character Stats"** and **"Quest Log"** aren't hard-coded. They fetch directly from the GitHub API on load, analyzing repository languages and displaying up-to-date repositories as "quests".
+- **🎨 Pixel-Art Skeumorphic aesthetic:** Deeply styled custom CSS panels, glowing text buttons, pixel cards, and dialogue boxes merge nostalgic RPG elements with clean modern web design.
+- **🎥 Advanced GSAP Animations:** Seamless page loads, timeline-bound UI pop-ins, and scroll-linked camera/element effects.
+- **🏂 Smooth Scrolling Engine:** Powered by **Lenis** to provide a fluid, satisfying navigation experience.
+- **🕊️ Carrier Pigeon Courier:** A creatively engineered interactive contact form using timeline-controlled HTML/CSS animations.
 
-## 🏆 GitHub Trophies
-![](https://github-profile-trophy.vercel.app/?username=1Anuraag0&theme=radical&no-frame=false&no-bg=true&margin-w=4)
+## 🛠️ Tech Stack
+- **Framework:** Next.js 16 (React 19)
+- **Styling:** Tailwind CSS v4 (PostCSS config optimized) & Custom CSS Keyframes
+- **Animations:** GSAP (GreenSock) & ScrollTrigger
+- **Scrolling:** Lenis
+- **Language:** TypeScript
 
-### 🔝 Top Contributed Repo
-![](https://github-contributor-stats.vercel.app/api?username=1Anuraag0&limit=5&theme=dark&combine_all_yearly_contributions=true)
+## 🚀 Getting Started
+
+If you'd like to run the project locally or examine the code:
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/1Anuraag0/Portfolio.git
+   ```
+
+2. **Navigate into the project:**
+   ```bash
+   cd Portfolio
+   ```
+
+3. **Install the dependencies:**
+   ```bash
+   npm install
+   ```
+   *(Ensure you are using a modern version of Node.js)*
+
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser:** Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 📁 Repository Structure
+- **/app**: Contains the main routing logic, global CSS files, and the primary application entry components.
+- **/components/sections**: Houses the heavily detailed RPG segments (Hero, About, Projects, and Contact sections).
+- **/components**: Shared interactive elements like the `DialogueBox`, `MiniMap`, `ParticleField`, and `SmoothScroll`.
+- **/public**: Stores all the core video wrappers and assets.
 
 ---
-[![](https://visitcount.itsvg.in/api?id=1Anuraag0&icon=0&color=0)](https://visitcount.itsvg.in)
-
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+*Crafted with ☕, ❤️, and lots of pixels by [Anurag Dolui](https://github.com/1Anuraag0)*
