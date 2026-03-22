@@ -1,49 +1,582 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@300;400;500&family=Press+Start+2P&display=swap');
+@import "tailwindcss";
+
+/* ── Lenis smooth scroll ── */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
-@media (prefers-color-scheme: dark) {
+@theme {
+  --font-serif-jp: 'Noto Serif JP', serif;
+}
+
+/* ============================================================
+   SKEUOMORPHIC DESIGN SYSTEM — GLOBALS
+   A tactile, 3D, real-world-inspired design language with
+   leather textures, metallic accents, embossed surfaces,
+   beveled edges, and realistic lighting.
+   ============================================================ */
+
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* ── Core palette ── */
+    --background: 225 30% 8%;
+    --foreground: 220 20% 92%;
+
+    /* ── Sakura / accent ── */
+    --sakura: 340 45% 72%;
+    --sakura-light: 340 50% 82%;
+
+    /* ── Night sky ── */
+    --night-sky: 225 35% 12%;
+    --night-deep: 225 40% 6%;
+
+    /* ── Amber / gold ── */
+    --amber-glow: 35 80% 55%;
+    --amber-soft: 35 60% 40%;
+
+    /* ── Mountain ── */
+    --mountain: 225 25% 16%;
+    --star: 45 20% 85%;
+
+    /* ── Skeuomorphic tokens (used throughout components) ── */
+    --font-pixel: 'Press Start 2P', monospace;
+    --font-retro: 'Outfit', sans-serif;
+
+    /* ── Skin / surface colors ── */
+    --pixel-black: #0a0a0f;
+    --pixel-border: #3a3542;
+    --pixel-border-light: #5a4f62;
+
+    /* ── Text hierarchy ── */
+    --text-primary: #e8e4db;
+    --text-secondary: #9a92a6;
+    --text-muted: #6a6274;
+
+    /* ── RPG accents ── */
+    --sunset-orange: #e8764e;
+    --sunset-gold: #f0a830;
+    --amber-light: #f5c76b;
+    --teal-accent: #45b5aa;
+    --teal-dark: #2a7a72;
+    --grass-green: #5a8c3c;
+    --moon-silver: #c0d6e4;
+    --lantern-gold: #ffd700;
+
+    /* ── Skeuomorphic surfaces ── */
+    --leather-dark: #1c1620;
+    --leather-mid: #2a2230;
+    --leather-light: #3a3042;
+    --parchment: #f5e6c8;
+    --parchment-dark: #d9c49a;
+    --metal-highlight: rgba(255, 255, 255, 0.12);
+    --metal-shadow: rgba(0, 0, 0, 0.45);
+    --emboss-light: rgba(255, 255, 255, 0.08);
+    --emboss-shadow: rgba(0, 0, 0, 0.35);
+    --bevel-top: rgba(255, 255, 255, 0.15);
+    --bevel-bottom: rgba(0, 0, 0, 0.4);
+
+    /* ── Glow effects ── */
+    --glow-amber: rgba(240, 168, 48, 0.35);
+    --glow-sakura: rgba(246, 184, 209, 0.25);
+    --glow-teal: rgba(69, 181, 170, 0.25);
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
 }
 
-html {
-  height: 100%;
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .bg-night-deep { background-color: #0a0a0f; }
+  .text-sakura-light { color: #f6b8d1; }
+  .bg-sakura-light { background-color: #f6b8d1; }
+  .bg-amber-glow { background-color: #d09140; }
+  .bg-star { background-color: #e8e4db; }
 }
 
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
+/* ============================================================
+   SECTION LAYOUT
+   ============================================================ */
+
+.section {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
 }
 
-body {
-  min-height: 100%;
+.section-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ============================================================
+   SKEUOMORPHIC RPG PANELS
+   Leather-bound frame with metallic rivets, beveled borders,
+   inner emboss, and a subtle parchment-like gradient.
+   ============================================================ */
+
+.rpg-panel {
+  position: relative;
+  background:
+    linear-gradient(180deg, var(--leather-light) 0%, var(--leather-dark) 100%);
+  border: 3px solid var(--pixel-border);
+  border-top-color: var(--pixel-border-light);
+  border-left-color: var(--pixel-border-light);
+  border-radius: 4px;
+  padding: 20px;
+  box-shadow:
+    /* Outer 3D bevel */
+    4px 4px 0 0 var(--emboss-shadow),
+    -1px -1px 0 0 var(--emboss-light),
+    /* Inner emboss */
+    inset 0 1px 0 0 var(--metal-highlight),
+    inset 0 -2px 4px 0 var(--metal-shadow),
+    /* Soft ambient glow */
+    0 8px 32px rgba(0, 0, 0, 0.5);
+
+  /* Leather grain texture overlay */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255, 255, 255, 0.015) 2px,
+      rgba(255, 255, 255, 0.015) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 3px,
+      rgba(255, 255, 255, 0.008) 3px,
+      rgba(255, 255, 255, 0.008) 4px
+    );
+}
+
+/* Corner rivets */
+.rpg-panel::before,
+.rpg-panel::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #8a7a6a, #4a3a2a);
+  box-shadow:
+    inset -1px -1px 2px rgba(0, 0, 0, 0.5),
+    inset 1px 1px 1px rgba(255, 255, 255, 0.2),
+    0 1px 3px rgba(0, 0, 0, 0.5);
+  z-index: 5;
+}
+
+.rpg-panel::before {
+  top: 6px;
+  left: 6px;
+}
+
+.rpg-panel::after {
+  top: 6px;
+  right: 6px;
+}
+
+.rpg-panel-title {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--sunset-gold);
+  padding: 6px 16px;
+  margin: -20px -20px 16px -20px;
+  background:
+    linear-gradient(180deg, #3a2f22 0%, #2a2018 100%);
+  border-bottom: 3px solid var(--pixel-border);
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   STAT BARS — Beveled RPG-style progress bars
+   ============================================================ */
+
+.stat-bar-container {
+  margin-bottom: 10px;
+}
+
+.stat-bar-label {
   display: flex;
-  flex-direction: column;
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  justify-content: space-between;
+  font-family: var(--font-pixel);
+  font-size: 8px;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+.stat-bar-track {
+  height: 14px;
+  background: linear-gradient(180deg, #0a0812 0%, #16121e 50%, #0e0a14 100%);
+  border: 2px solid var(--pixel-border);
+  border-top-color: #1a1520;
+  border-left-color: #1a1520;
+  border-bottom-color: var(--pixel-border-light);
+  border-right-color: var(--pixel-border-light);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.6),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  position: relative;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+.stat-bar-fill {
+  height: 100%;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  box-shadow:
+    inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Glossy highlight stripe on the bar fill */
+.stat-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent);
+}
+
+/* ============================================================
+   PIXEL BUTTONS — Embossed, 3D, pressable
+   ============================================================ */
+
+.pixel-btn {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  padding: 12px 24px;
+  background: linear-gradient(180deg, #e8764e 0%, #c05a38 100%);
+  color: #fff;
+  border: 3px solid #a04828;
+  border-top-color: #f09070;
+  border-left-color: #f09070;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.15s ease;
+  box-shadow:
+    4px 4px 0 0 rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.pixel-btn:hover {
+  background: linear-gradient(180deg, #f09070 0%, #d06848 100%);
+  transform: translateY(-1px);
+  box-shadow:
+    5px 5px 0 0 rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px var(--glow-amber);
+}
+
+.pixel-btn:active {
+  transform: translateY(2px);
+  box-shadow:
+    1px 1px 0 0 rgba(0, 0, 0, 0.4),
+    inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  border-top-color: #a04828;
+  border-left-color: #a04828;
+  border-bottom-color: #f09070;
+  border-right-color: #f09070;
+}
+
+/* ============================================================
+   PIXEL INPUTS — Inset engraved fields
+   ============================================================ */
+
+.pixel-input {
+  font-family: var(--font-retro);
+  font-size: 15px;
+  width: 100%;
+  padding: 10px 14px;
+  background: linear-gradient(180deg, #0e0a14 0%, #161220 100%);
+  color: var(--text-primary);
+  border: 3px solid var(--pixel-border);
+  border-top-color: #1a1520;
+  border-left-color: #1a1520;
+  border-bottom-color: var(--pixel-border-light);
+  border-right-color: var(--pixel-border-light);
+  outline: none;
+  transition: all 0.25s ease;
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.5),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.pixel-input::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.pixel-input:focus {
+  border-color: var(--sunset-gold);
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.5),
+    0 0 12px var(--glow-amber);
+}
+
+/* ============================================================
+   DIALOGUE BOX — Leather-bound speech pane
+   ============================================================ */
+
+.dialogue-box {
+  background:
+    linear-gradient(180deg, var(--leather-light) 0%, var(--leather-dark) 100%);
+  border: 3px solid var(--pixel-border);
+  border-top-color: var(--pixel-border-light);
+  border-left-color: var(--pixel-border-light);
+  padding: 20px;
+  box-shadow:
+    4px 4px 0 0 var(--emboss-shadow),
+    inset 0 1px 0 var(--metal-highlight),
+    inset 0 -2px 4px var(--metal-shadow),
+    0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ============================================================
+   TYPEWRITER CURSOR — blinking block
+   ============================================================ */
+
+.typewriter-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 1.1em;
+  background-color: var(--sunset-gold);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink-cursor 0.8s steps(2) infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================================
+   PIXEL GLOW TEXT — embossed text treatments
+   ============================================================ */
+
+.pixel-glow {
+  text-shadow:
+    0 0 10px var(--glow-amber),
+    0 0 30px rgba(232, 118, 78, 0.3),
+    0 2px 0 rgba(0, 0, 0, 0.4);
+}
+
+.pixel-glow-gold {
+  text-shadow:
+    0 0 10px var(--glow-amber),
+    0 0 30px rgba(240, 168, 48, 0.4),
+    0 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   CRT OVERLAY — subtle scanline texture for retro depth
+   ============================================================ */
+
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.04) 2px,
+      rgba(0, 0, 0, 0.04) 3px
+    );
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   FLOAT ANIMATION for sparkles & decorative elements
+   ============================================================ */
+
+.float-anim {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+}
+
+/* ============================================================
+   PETAL & PARTICLE KEYFRAMES
+   ============================================================ */
+
+@keyframes petal-fall {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 0.8; }
+  100% { transform: translateY(105vh) translateX(80px) rotate(720deg); opacity: 0; }
+}
+
+@keyframes petal-fall-reverse {
+  0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.5; }
+  100% { transform: translateY(105vh) translateX(-60px) rotate(-540deg); opacity: 0; }
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes float-up {
+  0% { transform: translateY(20px); opacity: 0; filter: blur(4px); }
+  100% { transform: translateY(0); opacity: 1; filter: blur(0px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes ambientDrift {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.15; }
+  100% { transform: scale(1.3) translate(2vw, -4vh); opacity: 0.3; }
+}
+
+/* ============================================================
+   ANIMATION UTILITY CLASSES
+   ============================================================ */
+
+.animate-petal { animation: petal-fall linear infinite; }
+.animate-petal-reverse { animation: petal-fall-reverse linear infinite; }
+.animate-twinkle { animation: star-twinkle ease-in-out infinite; }
+.animate-float-up { animation: float-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.animate-glow-pulse { animation: glow-pulse 3s ease-in-out infinite; }
+
+/* ============================================================
+   FONT-SERIF-JP UTILITY
+   ============================================================ */
+
+.font-serif-jp {
+  font-family: 'Noto Serif JP', serif;
+}
+
+/* ============================================================
+   SCROLLBAR — Skeuomorphic styled
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--leather-dark);
+  border-left: 1px solid var(--pixel-border);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--pixel-border-light), var(--pixel-border));
+  border: 1px solid var(--pixel-border);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #6a5f72, var(--pixel-border-light));
+}
+
+/* ============================================================
+   ADDITIONAL KEYFRAMES
+   ============================================================ */
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+  /* About section grid stacks on mobile */
+  #about .section-inner > div:nth-child(2) {
+    grid-template-columns: 1fr !important;
+  }
+  .section-inner {
+    padding: 0 16px;
+  }
+
+  .rpg-panel {
+    padding: 14px;
+  }
+
+  .rpg-panel-title {
+    margin: -14px -14px 12px -14px;
+    font-size: 9px;
+    padding: 5px 12px;
   }
 }
