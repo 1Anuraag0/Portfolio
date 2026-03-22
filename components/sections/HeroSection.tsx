@@ -284,36 +284,6 @@ export default function HeroSection() {
       {/* Content */}
       <div className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6">
 
-        {/* Skeuomorphic Name Plate — refined */}
-        <div
-          className={loaded ? 'animate-float-up' : 'opacity-0'}
-          style={{
-            animationDelay: '0.2s',
-            background: 'linear-gradient(180deg, rgba(42, 34, 48, 0.85) 0%, rgba(28, 22, 32, 0.95) 100%)',
-            border: '2px solid rgba(240, 168, 48, 0.3)',
-            borderTopColor: 'rgba(240, 168, 48, 0.45)',
-            borderLeftColor: 'rgba(240, 168, 48, 0.45)',
-            padding: '8px 36px',
-            boxShadow: `
-              0 0 40px rgba(240, 168, 48, 0.08),
-              inset 0 1px 0 rgba(255,255,255,0.08)
-            `,
-            marginBottom: '20px',
-            borderRadius: '2px',
-          }}
-        >
-          <span style={{
-            fontFamily: "'Press Start 2P', monospace",
-            fontSize: 'clamp(7px, 1.2vw, 9px)',
-            color: '#f0a830',
-            letterSpacing: '6px',
-            textTransform: 'uppercase',
-            textShadow: '0 0 12px rgba(240, 168, 48, 0.6)',
-          }}>
-            PORTFOLIO
-          </span>
-        </div>
-
         {/* Main heading — clean, bold name */}
         <h1
           className={`text-balance text-center text-white ${loaded ? 'animate-float-up' : 'opacity-0'}`}
