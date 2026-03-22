@@ -15,10 +15,10 @@ export default function ProjectsSection() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://api.github.com/users/1Anuraag0/repos?sort=updated&per_page=12')
+    fetch('/api/github')
       .then(res => res.json())
       .then(data => {
-        if (!Array.isArray(data)) {
+        if (!data || data.error || !Array.isArray(data.repos)) {
           setProjects([
             { title: 'Portfolio', description: 'Interactive React/Next.js portfolio.', tags: ['TypeScript', 'React'], icon: '⚡', color: '#7ec8e3', link: 'https://github.com/1Anuraag0/Portfolio' },
             { title: 'More Artifacts', description: 'Explore more on GitHub directly.', tags: ['Code', 'Open Source'], icon: '📦', color: '#e8764e', link: 'https://github.com/1Anuraag0' }
@@ -26,7 +26,7 @@ export default function ProjectsSection() {
           setLoading(false);
           return;
         }
-        const formatted = data
+        const formatted = data.repos
           .filter((repo: any) => !repo.fork)
           .slice(0, 6)
           .map((repo: any, i: number) => ({
