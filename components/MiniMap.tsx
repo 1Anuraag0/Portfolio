@@ -20,13 +20,12 @@ export default function MiniMap({ activeSection, sections }: MiniMapProps) {
   const icons = ['🏔️', '📚', '⚒️', '🌙'];
 
   return (
-    <div style={{
+    <div className="hidden md:flex" style={{
       position: 'fixed',
       top: '50%',
       right: '20px',
       transform: 'translateY(-50%)',
       zIndex: 100,
-      display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       gap: '4px',

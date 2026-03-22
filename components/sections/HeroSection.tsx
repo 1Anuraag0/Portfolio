@@ -290,7 +290,7 @@ export default function HeroSection() {
           style={{
             animationDelay: '0.4s',
             fontFamily: "'Noto Serif JP', serif",
-            fontSize: 'clamp(48px, 8vw, 120px)',
+            fontSize: 'clamp(32px, 12vw, 120px)',
             fontWeight: 300,
             lineHeight: 1.05,
             letterSpacing: '-0.02em',
