@@ -32,7 +32,7 @@ export async function GET() {
     }
 
     // Optimize language bytes logic to execute entirely server-side so the client browser never gets limits
-    const ownRepos = repos.filter((r: any) => !r.fork);
+    const ownRepos = repos.filter((r: any) => !r.fork && r.name.toLowerCase() !== username.toLowerCase());
     const langTotals: Record<string, number> = {};
     
     // Fetch individual language maps for the top 15 repositories
